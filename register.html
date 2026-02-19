@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register – ShadowFlix</title>
+    <meta name="description"
+        content="Create your ShadowFlix account and start watching unlimited movies and TV shows." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/auth.css" />
+    <style>
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0)
+            }
+
+            25%,
+            75% {
+                transform: translateX(-6px)
+            }
+
+            50% {
+                transform: translateX(6px)
+            }
+        }
+
+        .shake {
+            animation: shake 0.5s ease;
+        }
+    </style>
+</head>
+
+<body class="auth-page">
+
+    <!-- Background -->
+    <div class="auth-bg" id="auth-bg"></div>
+    <div class="auth-bg-overlay"></div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Nav -->
+    <nav class="auth-nav" role="navigation">
+        <a href="index.html" class="nav-logo" aria-label="ShadowFlix home">Shadow<span
+                style="color:#fff">Flix</span></a>
+    </nav>
+
+    <!-- Registration Form -->
+    <main class="auth-center" role="main">
+        <div class="auth-card">
+            <h1 class="auth-title">Create Account</h1>
+
+            <!-- Alert -->
+            <div class="auth-alert" id="reg-alert" role="alert"></div>
+
+            <form id="reg-form" onsubmit="handleRegister(event)" novalidate aria-label="Registration form">
+
+                <!-- Name Row -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="reg-firstname">First Name</label>
+                        <div class="input-wrap">
+                            <span class="input-icon" aria-hidden="true">👤</span>
+                            <input type="text" id="reg-firstname" class="form-input" placeholder="John"
+                                autocomplete="given-name" required aria-describedby="reg-firstname-msg" />
+                        </div>
+                        <div class="form-msg" id="reg-firstname-msg" aria-live="polite"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-lastname">Last Name</label>
+                        <div class="input-wrap">
+                            <span class="input-icon" aria-hidden="true">👤</span>
+                            <input type="text" id="reg-lastname" class="form-input" placeholder="Doe"
+                                autocomplete="family-name" required aria-describedby="reg-lastname-msg" />
+                        </div>
+                        <div class="form-msg" id="reg-lastname-msg" aria-live="polite"></div>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="reg-email">Email Address</label>
+                    <div class="input-wrap">
+                        <span class="input-icon" aria-hidden="true">✉️</span>
+                        <input type="email" id="reg-email" class="form-input" placeholder="john@example.com"
+                            autocomplete="email" required aria-describedby="reg-email-msg" />
+                    </div>
+                    <div class="form-msg" id="reg-email-msg" aria-live="polite"></div>
+                </div>
+
+                <!-- Username -->
+                <div class="form-group">
+                    <label for="reg-username">Username</label>
+                    <div class="input-wrap">
+                        <span class="input-icon" aria-hidden="true">@</span>
+                        <input type="text" id="reg-username" class="form-input" placeholder="johndoe_99"
+                            autocomplete="username" required aria-describedby="reg-username-msg" />
+                    </div>
+                    <div class="form-msg" id="reg-username-msg" aria-live="polite"></div>
+                </div>
+
+                <!-- Phone & Gender -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="reg-phone">Phone Number</label>
+                        <div class="input-wrap">
+                            <span class="input-icon" aria-hidden="true">📱</span>
+                            <input type="tel" id="reg-phone" class="form-input" placeholder="+1 234 567 8900"
+                                autocomplete="tel" aria-describedby="reg-phone-msg" />
+                        </div>
+                        <div class="form-msg" id="reg-phone-msg" aria-live="polite"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-gender">Gender</label>
+                        <select id="reg-gender" class="form-select" required aria-label="Gender">
+                            <option value="">Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="non-binary">Non-binary</option>
+                            <option value="prefer-not">Prefer not to say</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Date of Birth -->
+                <div class="form-group">
+                    <label for="reg-dob">Date of Birth</label>
+                    <div class="input-wrap">
+                        <span class="input-icon" aria-hidden="true">🎂</span>
+                        <input type="date" id="reg-dob" class="form-input" max="2011-01-01" autocomplete="bday" required
+                            aria-describedby="reg-dob-msg" />
+                    </div>
+                    <div class="form-msg" id="reg-dob-msg" aria-live="polite"></div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="reg-password">Password</label>
+                    <div class="input-wrap">
+                        <span class="input-icon" aria-hidden="true">🔒</span>
+                        <input type="password" id="reg-password" class="form-input"
+                            placeholder="Create a strong password" autocomplete="new-password" required
+                            aria-describedby="pw-strength-label reg-pw-rules" />
+                        <button type="button" class="pw-toggle" aria-label="Toggle password visibility"
+                            onclick="togglePw('reg-password', this)">👁</button>
+                    </div>
+
+                    <!-- Strength meter -->
+                    <div class="pw-strength" id="pw-strength-section">
+                        <div class="pw-strength-bar">
+                            <div class="pw-strength-fill" id="pw-strength-fill"></div>
+                        </div>
+                        <div class="pw-strength-label" id="pw-strength-label"></div>
+
+                        <!-- All 10 test case indicators -->
+                        <div class="pw-rules" id="reg-pw-rules" role="list" aria-label="Password requirements">
+                            <div class="pw-rule" id="rule-length" role="listitem">
+                                <span class="pw-rule-icon" aria-hidden="true">○</span>8+ characters
+                            </div>
+                            <div class="pw-rule" id="rule-uppercase" role="listitem">
+                                <span class="pw-rule-icon" aria-hidden="true">○</span>Uppercase (A-Z)
+                            </div>
+                            <div class="pw-rule" id="rule-lowercase" role="listitem">
+                                <span class="pw-rule-icon" aria-hidden="true">○</span>Lowercase (a-z)
+                            </div>
+                            <div class="pw-rule" id="rule-digit" role="listitem">
+                                <span class="pw-rule-icon" aria-hidden="true">○</span>Number (0-9)
+                            </div>
+                            <div class="pw-rule" id="rule-special" role="listitem">
+                                <span class="pw-rule-icon" aria-hidden="true">○</span>Special char (!@#…)
+                            </div>
+                            <div class="pw-rule" id="rule-no_spaces" role="listitem">
+                                <span class="pw-rule-icon" aria-hidden="true">○</span>No spaces
+                            </div>
+                            <div class="pw-rule" id="rule-max_length" role="listitem">
+                                <span class="pw-rule-icon" aria-hidden="true">○</span>Max 64 chars
+                            </div>
+                            <div class="pw-rule" id="rule-not_common" role="listitem">
+                                <span class="pw-rule-icon" aria-hidden="true">○</span>Not common pw
+                            </div>
+                            <div class="pw-rule" id="rule-no_repeat" role="listitem">
+                                <span class="pw-rule-icon" aria-hidden="true">○</span>No repeats (aaaa)
+                            </div>
+                            <div class="pw-rule" id="rule-no_sequential" role="listitem">
+                                <span class="pw-rule-icon" aria-hidden="true">○</span>No sequences (1234)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+                    <label for="reg-confirm">Confirm Password</label>
+                    <div class="input-wrap">
+                        <span class="input-icon" aria-hidden="true">🔒</span>
+                        <input type="password" id="reg-confirm" class="form-input" placeholder="Repeat your password"
+                            autocomplete="new-password" required aria-describedby="reg-confirm-msg" />
+                        <button type="button" class="pw-toggle" aria-label="Toggle confirm password visibility"
+                            onclick="togglePw('reg-confirm', this)">👁</button>
+                    </div>
+                    <div class="form-msg" id="reg-confirm-msg" aria-live="polite"></div>
+                </div>
+
+                <!-- Terms -->
+                <label class="terms-check">
+                    <input type="checkbox" id="reg-terms" required aria-required="true" />
+                    I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                </label>
+
+                <button type="submit" class="btn-auth" id="reg-submit" aria-label="Create account">
+                    Create Account
+                    <span class="btn-spinner" aria-hidden="true"></span>
+                </button>
+            </form>
+
+            <div class="auth-footer-text">
+                Already have an account? <a href="login.html">Sign In</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/password-validator.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/register.js"></script>
+</body>
+
+</html>

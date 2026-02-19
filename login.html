@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In – ShadowFlix</title>
+    <meta name="description" content="Sign in to your ShadowFlix account and continue watching." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/auth.css" />
+    <style>
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0)
+            }
+
+            25%,
+            75% {
+                transform: translateX(-6px)
+            }
+
+            50% {
+                transform: translateX(6px)
+            }
+        }
+
+        .shake {
+            animation: shake 0.5s ease;
+        }
+    </style>
+</head>
+
+<body class="auth-page">
+
+    <!-- Background -->
+    <div class="auth-bg" id="auth-bg"></div>
+    <div class="auth-bg-overlay"></div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Nav -->
+    <nav class="auth-nav" role="navigation">
+        <a href="index.html" class="nav-logo" aria-label="ShadowFlix home">Shadow<span
+                style="color:#fff">Flix</span></a>
+    </nav>
+
+    <!-- Login Form -->
+    <main class="auth-center" role="main">
+        <div class="auth-card">
+            <h1 class="auth-title">Sign In</h1>
+
+            <!-- Alert -->
+            <div class="auth-alert" id="login-alert" role="alert"></div>
+
+            <form id="login-form" onsubmit="handleLogin(event)" novalidate aria-label="Login form">
+
+                <!-- Identifier -->
+                <div class="form-group">
+                    <label for="login-identifier">Email or Username</label>
+                    <div class="input-wrap">
+                        <span class="input-icon" aria-hidden="true">👤</span>
+                        <input type="text" id="login-identifier" class="form-input"
+                            placeholder="Enter email or username" autocomplete="username" required
+                            aria-describedby="login-identifier-help" />
+                    </div>
+                    <p id="login-identifier-help" class="form-msg">Enter your email address or username</p>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <div class="input-wrap">
+                        <span class="input-icon" aria-hidden="true">🔒</span>
+                        <input type="password" id="login-password" class="form-input" placeholder="Enter your password"
+                            autocomplete="current-password" required />
+                        <button type="button" class="pw-toggle" aria-label="Toggle password visibility"
+                            onclick="togglePw('login-password', this)">👁</button>
+                    </div>
+                </div>
+
+                <!-- Remember / Forgot -->
+                <div
+                    style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;font-size:0.83rem">
+                    <label style="display:flex;align-items:center;gap:8px;cursor:pointer;color:var(--text-dim)">
+                        <input type="checkbox" id="remember-me" style="accent-color:var(--red)" /> Remember me
+                    </label>
+                    <a href="#" style="color:var(--text-dim);transition:color 0.2s"
+                        onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-dim)'">
+                        Forgot password?
+                    </a>
+                </div>
+
+                <button type="submit" class="btn-auth" id="login-submit" aria-label="Sign in">
+                    Sign In
+                    <span class="btn-spinner" aria-hidden="true"></span>
+                </button>
+            </form>
+
+            <div class="auth-divider">OR</div>
+
+            <!-- Demo hint -->
+            <div
+                style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:16px;margin-bottom:16px;font-size:0.83rem;color:var(--text-dim)">
+                <strong style="color:var(--text);display:block;margin-bottom:6px">💡 New here?</strong>
+                Don't have an account yet? Create one to manage your watchlist and personalize your experience.
+            </div>
+
+            <div class="auth-footer-text">
+                New to ShadowFlix? <a href="register.html">Sign up now</a>
+            </div>
+
+            <p style="font-size:0.75rem;color:var(--text-muted);text-align:center;margin-top:20px;line-height:1.5">
+                This page is protected by Google reCAPTCHA to ensure you're not a bot.
+                <a href="#" style="color:var(--text-muted);text-decoration:underline">Learn more</a>
+            </p>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/password-validator.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/login.js"></script>
+</body>
+
+</html>

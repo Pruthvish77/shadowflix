@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Browse – ShadowFlix</title>
+    <meta name="description" content="Browse unlimited movies and TV shows on ShadowFlix." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/landing.css" />
+    <link rel="stylesheet" href="css/browse.css" />
+    <style>
+        .card-btn.active {
+            background: var(--red) !important;
+            border-color: var(--red) !important;
+            color: #fff !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Loader -->
+    <div class="page-loader" id="page-loader">
+        <div class="logo-text">ShadowFlix</div>
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast-container"></div>
+
+    <!-- ── Navigation ───────────────────────────────────────────────────────────── -->
+    <nav class="browse-nav" role="navigation" aria-label="Browse navigation">
+        <div class="browse-nav-left">
+            <a href="index.html" class="nav-logo"
+                style="font-size:1.4rem;font-weight:900;color:var(--red);letter-spacing:-1px"
+                aria-label="ShadowFlix home">Shadow<span style="color:#fff">Flix</span></a>
+            <ul class="nav-links" role="list">
+                <li><a href="browse.html" class="active" aria-current="page">Home</a></li>
+                <li><a href="browse.html">TV Shows</a></li>
+                <li><a href="browse.html">Movies</a></li>
+                <li><a href="browse.html">New & Popular</a></li>
+                <li><a href="browse.html">My List</a></li>
+            </ul>
+        </div>
+        <div class="browse-nav-right">
+            <!-- Search -->
+            <div class="nav-search-wrap" id="nav-search-wrap" role="search">
+                <input type="search" id="nav-search-input" placeholder="Titles, people, genres" autocomplete="off"
+                    aria-label="Search movies" />
+            </div>
+            <button class="nav-search-btn" id="nav-search-btn" aria-label="Toggle search">🔍</button>
+            <button class="nav-bell" aria-label="Notifications">🔔</button>
+
+            <!-- Profile dropdown -->
+            <div class="nav-profile-wrap">
+                <img class="nav-avatar" id="nav-avatar"
+                    src="https://ui-avatars.com/api/?name=User&background=e50914&color=fff" alt="Profile avatar"
+                    id="nav-avatar-img" />
+                <div class="nav-profile-menu" role="menu">
+                    <span id="user-greeting"
+                        style="padding:10px 16px;font-size:0.85rem;color:var(--text-dim);display:block;font-weight:600"></span>
+                    <div class="menu-divider"></div>
+                    <a href="browse.html" role="menuitem">👤 Profile</a>
+                    <a href="browse.html" role="menuitem">❤️ My Watchlist</a>
+                    <a href="browse.html" role="menuitem">⚙️ Account</a>
+                    <div class="menu-divider"></div>
+                    <button onclick="handleLogout()" role="menuitem" aria-label="Sign out">🚪 Sign Out</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ── Hero ──────────────────────────────────────────────────────────────────── -->
+    <section class="browse-hero" aria-label="Featured movie">
+        <div class="browse-hero-img" id="browse-hero-img"></div>
+        <div class="browse-hero-content" id="browse-hero-content">
+            <!-- Filled by JS -->
+        </div>
+    </section>
+
+    <!-- ── Genre Filter ──────────────────────────────────────────────────────────── -->
+    <div class="browse-genre-filter" id="genre-chips" role="navigation" aria-label="Genre filter">
+        <!-- Filled by JS -->
+    </div>
+
+    <!-- ── Movie Rows ────────────────────────────────────────────────────────────── -->
+    <main class="browse-content" role="main">
+        <div id="browse-rows">
+            <!-- Filled by JS -->
+        </div>
+    </main>
+
+    <!-- ── Movie Detail Modal ─────────────────────────────────────────────────────── -->
+    <div class="modal-overlay" id="movie-modal-overlay" role="dialog" aria-modal="true" aria-label="Movie details">
+        <div class="modal movie-modal">
+            <button class="modal-close" onclick="closeMovieModal()" aria-label="Close modal">✕</button>
+            <div id="movie-modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/password-validator.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/browse.js"></script>
+</body>
+
+</html>
