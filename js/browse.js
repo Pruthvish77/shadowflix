@@ -9,10 +9,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     populateUserInfo();
     initBrowseNav();
     initSearch();
+
+    // Load hero, genres, and rows all at once — nothing blocks anything
     loadGenres();
-    await loadBrowseHero();
-    await loadAllRows();
-    Utils.hideLoader();
+    loadBrowseHero();
+    loadAllRows();
 });
 
 // ── User Info ─────────────────────────────────────────────────────────────────
